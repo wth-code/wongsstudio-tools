@@ -6,8 +6,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    s.starttls()
-    return redirect(url_for("send"))
+    try:
+        s.starttls()
+        return redirect(url_for("send"))
+    except Exception:
+        return redirect(url_for("send"))
+
 
 
 ################   EMAIL SENDER  ########################
