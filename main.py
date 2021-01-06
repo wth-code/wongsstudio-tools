@@ -25,7 +25,8 @@ def send():
             li_emails = list(emails.split(","))
             msg = f"Subject: {sender_title}\n\n{sender_msg}"
             return redirect(url_for("do"))
-
+        else:
+            return render_template("send.html")
     except Exception:
         if request.method == "POST":
             sender_email = request.form["gm"]
