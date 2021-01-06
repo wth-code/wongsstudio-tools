@@ -56,4 +56,4 @@ def listToString(s):
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=False, host="0.0.0.0")
