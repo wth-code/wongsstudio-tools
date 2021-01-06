@@ -6,30 +6,38 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    try:
-        s.starttls()
-        return redirect(url_for("send"))
-    except Exception:
-        return redirect(url_for("send"))
-
+    return render_template("index.html")
 
 
 ################   EMAIL SENDER  ########################
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
-    global sender_email, sender_password, sender_title, msg, li_emails
-    if request.method == "POST":
-        sender_email = request.form["gm"]
-        sender_password = request.form["psd"]
-        sender_title = request.form["tit"]
-        sender_msg = request.form["msg"]
-        emails = request.form["st"]
-        li_emails = list(emails.split(","))
-        msg = f"Subject: {sender_title}\n\n{sender_msg}"
-        return redirect(url_for("do"))
-    else:
-        return render_template("send.html")
+    try:
+        s.starttls()
+        global sender_email, sender_password, sender_title, msg, li_emails
+        if request.method == "POST":
+            sender_email = request.form["gm"]
+            sender_password = request.form["psd"]
+            sender_title = request.form["tit"]
+            sender_msg = request.form["msg"]
+            emails = request.form["st"]
+            li_emails = list(emails.split(","))
+            msg = f"Subject: {sender_title}\n\n{sender_msg}"
+            return redirect(url_for("do"))
+        else:
+            return render_template("send.html")
+    except Exception:
+        global sender_email, sender_password, sender_title, msg, li_emails
+        if request.method == "POST":
+            sender_email = request.form["gm"]
+            sender_password = request.form["psd"]
+            sender_title = request.form["tit"]
+            sender_msg = request.form["msg"]
+            emails = request.form["st"]
+            li_emails = list(emails.split(","))
+            msg = f"Subject: {sender_title}\n\n{sender_msg}"
+            return redirect(url_for("do"))
 
 
 @app.route("/sending")
