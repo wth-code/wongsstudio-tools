@@ -13,9 +13,9 @@ def home():
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
+    global sender_email, sender_password, sender_title, msg, li_emails
     try:
         s.starttls()
-        global sender_email, sender_password, sender_title, msg, li_emails
         if request.method == "POST":
             sender_email = request.form["gm"]
             sender_password = request.form["psd"]
