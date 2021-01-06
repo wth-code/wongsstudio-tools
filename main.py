@@ -41,7 +41,6 @@ def send():
             return render_template("send.html")
 
 
-
 @app.route("/sending")
 def do():
     try:
@@ -56,10 +55,11 @@ def do():
         return render_template("sending.html", mes="Error, Try again")
     return render_template("sending.html")
 
+
 ################   END OF EMAIL SENDER  ########################
 
 
-################   BMI   ########################
+###########################   BMI   ############################
 @app.route("/bmi", methods=["GET", "POST"])
 def bmi():
     if request.method == "POST":
@@ -70,6 +70,9 @@ def bmi():
         return render_template("bmi.html", mes=f"Your BMI is {bmi}")
     else:
         return render_template("bmi.html")
+
+
+#########################   END BMI   ###########################
 
 def listToString(s):
     # initialize an empty string
