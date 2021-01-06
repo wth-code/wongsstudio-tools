@@ -13,40 +13,40 @@
 
     <style>
     body {
-        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-      }
+          text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+          box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
 
-      .cover-container {
-        max-width: 42em;
-      }
+        .cover-container {
+          max-width: 42em;
+        }
 
 
-      /*
-       * Header
-       */
+        /*
+         * Header
+         */
 
-      .nav-masthead .nav-link {
-        padding: .25rem 0;
-        font-weight: 700;
-        color: rgba(255, 255, 255, .5);
-        background-color: transparent;
-        border-bottom: .25rem solid transparent;
-      }
+        .nav-masthead .nav-link {
+          padding: .25rem 0;
+          font-weight: 700;
+          color: rgba(255, 255, 255, .5);
+          background-color: transparent;
+          border-bottom: .25rem solid transparent;
+        }
 
-      .nav-masthead .nav-link:hover,
-      .nav-masthead .nav-link:focus {
-        border-bottom-color: rgba(255, 255, 255, .25);
-      }
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+          border-bottom-color: rgba(255, 255, 255, .25);
+        }
 
-      .nav-masthead .nav-link + .nav-link {
-        margin-left: 1rem;
-      }
+        .nav-masthead .nav-link + .nav-link {
+          margin-left: 1rem;
+        }
 
-      .nav-masthead .active {
-        color: #fff;
-        border-bottom-color: #fff;
-      }
+        .nav-masthead .active {
+          color: #fff;
+          border-bottom-color: #fff;
+        }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -73,20 +73,34 @@
     <div>
       <h3 class="float-md-start mb-0">Wong's Studio</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="..">Home</a>
         <a class="nav-link" href="/send">Multiple Email Sender</a>
-        <a class="nav-link" href="/bmi">BMI Calculator</a>
+        <a class="nav-link active" aria-current="page" href="#">BMI Calculator</a>
       </nav>
     </div>
   </header>
 
   <main class="px-3">
-    <h1>Wong's Studio Tools</h1>
-    <p class="lead">I Tim am from Wong's Studio, I make youtube video and i like programming. This is i a website that will store the tools that I create !</p>
-    <p class="lead">
-      <a href="/send"><button type="button" class="btn btn-light">Multiple Email Sender</button></a>
-      <a href="#"><button type="button" class="btn btn-light">BMI Calculator</button></a>
-    </p>
+    <h1>BMI Calculator</h1>
+    <p class="lead">Type your info beow and it will automatically calculate your BMI !</a></p>
+	<center>
+	<form action="#" method="POST">
+	<table>
+        <tr>
+            <td>Your weight (KG):</td>
+            <td><input type="number" name="num1"></td>
+        </tr>
+        <tr>
+            <td>Your height (M):</td>
+            <td><input type="number" name="num2"></td>
+        </tr>
+    </table>
+         <p class="lead">{{bmi}}</p>
+        <br>
+    <input class="btn btn-primary" type="submit" value="Calculate" name="sendnow"><br>
+	
+</form>
+</center>
   </main>
 
   <footer class="mt-auto text-white-50">
