@@ -53,7 +53,6 @@ def do():
                 s.sendmail(sender_email, x, msg)
     except Exception:
         return render_template("sending.html", mes="Error, Try again")
-    return render_template("sending.html")
 
 
 ################   END OF EMAIL SENDER  ########################
