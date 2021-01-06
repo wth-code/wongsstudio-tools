@@ -65,7 +65,7 @@ def bmi():
     if request.method == "POST":
         num1 = request.form["num1"]
         num2 = request.form["num2"]
-        bmi = num1 / (num2 ** 2)
+        bmi = float(num1) / (float(num2) ** 2)
         return render_template("bmi.html", mes=f"Your BMI is {bmi}")
     else:
         return render_template("bmi.html")
