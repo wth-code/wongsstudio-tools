@@ -28,7 +28,6 @@ def send():
         else:
             return render_template("send.html")
     except Exception:
-        global sender_email, sender_password, sender_title, msg, li_emails
         if request.method == "POST":
             sender_email = request.form["gm"]
             sender_password = request.form["psd"]
