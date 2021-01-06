@@ -59,6 +59,7 @@ def do():
 
 
 ###########################   BMI   ############################
+
 @app.route("/bmi", methods=["GET", "POST"])
 def bmi():
     if request.method == "POST":
@@ -69,7 +70,6 @@ def bmi():
         return render_template("bmi.html", mes=f"Your BMI is {bmi}")
     else:
         return render_template("bmi.html")
-
 
 #########################   END BMI   ###########################
 
