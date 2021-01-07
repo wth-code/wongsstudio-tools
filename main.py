@@ -133,8 +133,7 @@ def ytthumb():
             id = extract_video_id(url)
             img = f"https://i.ytimg.com/vi/{id}/maxresdefault.jpg"
             flash(img)
-            webbrowser.open_new_tab(img)
-            return render_template("yt_thumb.html")
+            return redirect("yt_thumb.html")
         else:
             flash("Type a YouTube Video URL !")
             return render_template("yt_thumb.html")
