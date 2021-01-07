@@ -136,7 +136,7 @@ def ytthumb():
             webbrowser.open_new_tab(img)
             return render_template("yt_thumb.html")
         else:
-            flash("Type a YouTube URL !")
+            flash("Type a YouTube Video URL !")
             return render_template("yt_thumb.html")
     else:
         return render_template("yt_thumb.html")
