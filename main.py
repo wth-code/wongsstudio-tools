@@ -102,8 +102,11 @@ def rad_num():
     if request.method == "POST":
         min = request.form["min"]
         max = request.form["max"]
-        num = random.randint(int(max), int(min))
-        return render_template("rand_num.html", mes=num)
+        if min < max:
+            num = random.randint(int(min), int(max))
+            return render_template("rand_num.html", mes=num)
+        else:
+            return render_template("rand_num.html", mes="Min is larger than Max, try again")
     else:
         return render_template("rand_num.html")
 
