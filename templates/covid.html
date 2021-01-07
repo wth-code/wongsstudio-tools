@@ -7,46 +7,46 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
     <title>Wong's Studio Tools</title>
-    <link rel="icon" href="https://i.postimg.cc/cLnpvDGH/logo2-no-background-no-word.png">
+
     <!-- Bootstrap core CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <style>
     body {
-        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-      }
+          text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+          box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
 
-      .cover-container {
-        max-width: 42em;
-      }
+        .cover-container {
+          max-width: 42em;
+        }
 
 
-      /*
-       * Header
-       */
+        /*
+         * Header
+         */
 
-      .nav-masthead .nav-link {
-        padding: .25rem 0;
-        font-weight: 700;
-        color: rgba(255, 255, 255, .5);
-        background-color: transparent;
-        border-bottom: .25rem solid transparent;
-      }
+        .nav-masthead .nav-link {
+          padding: .25rem 0;
+          font-weight: 700;
+          color: rgba(255, 255, 255, .5);
+          background-color: transparent;
+          border-bottom: .25rem solid transparent;
+        }
 
-      .nav-masthead .nav-link:hover,
-      .nav-masthead .nav-link:focus {
-        border-bottom-color: rgba(255, 255, 255, .25);
-      }
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+          border-bottom-color: rgba(255, 255, 255, .25);
+        }
 
-      .nav-masthead .nav-link + .nav-link {
-        margin-left: 1rem;
-      }
+        .nav-masthead .nav-link + .nav-link {
+          margin-left: 1rem;
+        }
 
-      .nav-masthead .active {
-        color: #fff;
-        border-bottom-color: #fff;
-      }
+        .nav-masthead .active {
+          color: #fff;
+          border-bottom-color: #fff;
+        }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -61,32 +61,30 @@
         }
       }
     </style>
+    <link rel="icon" href="https://i.postimg.cc/cLnpvDGH/logo2-no-background-no-word.png">
 
-    
     <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark">
-    
+
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>
       <h3 class="float-md-start mb-0">Wong's Studio</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="..">Home</a>
         <a class="nav-link" href="/send">Multiple Email Sender</a>
         <a class="nav-link" href="/bmi">BMI Calculator</a>
-        <a class="nav-link" href="/covid">COVID-19</a>
+        <a class="nav-link active" aria-current="page" href="#">COVID-19</a>
       </nav>
     </div>
   </header>
 
   <main class="px-3">
-    <h1>Wong's Studio Tools</h1>
-    <p class="lead">I Tim am from Wong's Studio, I make youtube video and i like programming. This is i a website that will store the tools that I create !</p>
-    <p class="lead">
-      <a href="/send"><button type="button" class="btn btn-light">Multiple Email Sender</button></a>
-      <a href="/bmi"><button type="button" class="btn btn-light">BMI Calculator</button></a>
-    </p>
+    <h1>Coronavirus Cases: {{case}}</h1>
+    <h1>Deaths: {{death}}</h1>
+    <h1>Recovered: {{recover}}</h1>
   </main>
 
   <footer class="mt-auto text-white-50">

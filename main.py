@@ -1,5 +1,7 @@
 from flask import Flask, redirect, render_template, request, flash, url_for
 import smtplib
+import requests
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -73,6 +75,23 @@ def bmi():
 
 #########################   END BMI   ###########################
 
+
+#########################    COVID    ###########################
+
+@app.route("/covid", methods=["GET", "POST"])
+def covid():
+    url = "https://www.worldometers.info/coronavirus/"
+    sess = requests.session()
+    req = sess.get(url)
+    soup = BeautifulSoup(req.text, features="html.parser")
+    case = soup.select(".maincounter-number")[0].text
+    death = soup.select(".maincounter-number")[1].text
+    recover = soup.select(".maincounter-number")[2].text
+    return render_template("covid.html", case=case, recover=recover, death=death)
+
+########################   END COVID   ###########################
+
+
 def listToString(s):
     # initialize an empty string
     str1 = " "
@@ -84,4 +103,4 @@ def listToString(s):
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
