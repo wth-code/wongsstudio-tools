@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template, request, flash, url_for
 import smtplib
 import requests
 from bs4 import BeautifulSoup
+import random
 
 app = Flask(__name__)
 
@@ -90,8 +91,23 @@ def covid():
     recover = soup.select(".maincounter-number")[2].text
     return render_template("covid.html", case=case, recover=recover, death=death)
 
+
 ########################   END COVID   ###########################
 
+
+######################   RANDOM NUM   ############################
+
+@app.route("/rand_num", methods=["GET", "POST"])
+def rad_num():
+    if request.method == "POST":
+        min = request.form["min"]
+        max = request.form["max"]
+        num = random.randint(int(max), int(min))
+        return render_template("rand_num.html", mes=num)
+    else:
+        return render_template("rand_num.html")
+
+####################   END RANDOM NUM   ##########################
 
 @app.route("/p")
 def p():
