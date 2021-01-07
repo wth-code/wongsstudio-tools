@@ -3,9 +3,12 @@ import smtplib
 import requests
 from bs4 import BeautifulSoup
 import random
+import webbrowser
+from urllib.parse import urlparse, parse_qs
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
+
 
 @app.route("/")
 def home():
@@ -116,7 +119,30 @@ def rad_num():
     else:
         return render_template("rand_num.html")
 
+
 ####################   END RANDOM NUM   ##########################
+
+
+####################   MORE TOOLS   ##############################
+
+@app.route("/ytthumb", methods=["GET", "POST"])
+def ytthumb():
+    if request.method == "POST":
+        url = request.form["url"]
+        if extract_video_id(url):
+            id = extract_video_id(url)
+            img = f"https://i.ytimg.com/vi/{id}/maxresdefault.jpg"
+            flash(img)
+            webbrowser.open_new_tab(img)
+            return render_template("yt_thumb.html")
+        else:
+            flash("Type a YouTube URL !")
+            return render_template("yt_thumb.html")
+    else:
+        return render_template("yt_thumb.html")
+
+
+####################   END MORE TOOLS   ##########################
 
 
 ####################   MORE TOOLS   ##############################
@@ -124,6 +150,7 @@ def rad_num():
 @app.route("/more")
 def more():
     return render_template("more.html")
+
 
 ####################   END MORE TOOLS   ##########################
 
@@ -133,6 +160,7 @@ def more():
 @app.route("/p")
 def p():
     return render_template("p.html")
+
 
 ###################  END Privacy Policy   ########################
 
@@ -145,8 +173,19 @@ def listToString(s):
     return (str1.join(s))
 
 
+def extract_video_id(url):
+    query = urlparse(url)
+    if query.hostname == 'youtu.be': return query.path[1:]
+    if query.hostname in {'www.youtube.com', 'youtube.com'}:
+        if query.path == '/watch': return parse_qs(query.query)['v'][0]
+        if query.path[:7] == '/embed/': return query.path.split('/')[2]
+        if query.path[:3] == '/v/': return query.path.split('/')[2]
+    # fail?
+    return False
+
+
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
