@@ -20,7 +20,7 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for msg in messages %}
-    {% if msg == "Type a YouTube URL !" %}
+    {% if msg == "Type a YouTube Video URL !" %}
     <p class="lead">{{msg}}</p>
     {% else %}
     <a href="{{msg}}" target="_blank"><p class="lead">{{msg}}</p></a>
