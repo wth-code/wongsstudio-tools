@@ -20,7 +20,13 @@
             <td><input type="number" name="max"></td>
          </tr>
       </table>
-      <p class="lead">{{mes}}</p>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for msg in messages %}
+      <p class="lead">{{msg}}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
       <input class="btn btn-primary" type="submit" value="Start" name="sendnow"><br>
    </form>
 </center>

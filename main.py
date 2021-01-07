@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import random
 
 app = Flask(__name__)
-
+app.secret_key = "super secret key"
 
 @app.route("/")
 def home():
@@ -104,9 +104,10 @@ def rad_num():
         max = request.form["max"]
         if min < max:
             num = random.randint(int(min), int(max))
-            return render_template("rand_num.html", mes=num)
+            flash(f"The number is {num}")
         else:
-            return render_template("rand_num.html", mes="Min is larger than Max, try again")
+            flash("Min is larger than Max, try again")
+        return render_template("rand_num.html")
     else:
         return render_template("rand_num.html")
 
@@ -128,4 +129,5 @@ def listToString(s):
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.debug = True
+    app.run(port=5000)
