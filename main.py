@@ -73,6 +73,7 @@ def bmi():
     else:
         return render_template("bmi.html")
 
+
 #########################   END BMI   ###########################
 
 
@@ -92,6 +93,11 @@ def covid():
 ########################   END COVID   ###########################
 
 
+@app.route("/p")
+def p():
+    return render_template("p.html")
+
+
 def listToString(s):
     # initialize an empty string
     str1 = " "
@@ -103,4 +109,4 @@ def listToString(s):
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
