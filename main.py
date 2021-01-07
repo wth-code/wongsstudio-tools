@@ -27,7 +27,17 @@ def send():
             emails = request.form["st"]
             li_emails = list(emails.split(","))
             msg = f"Subject: {sender_title}\n\n{sender_msg}"
-            return redirect(url_for("do"))
+            try:
+                s.login(sender_email, sender_password)
+                for x in li_emails:
+                    if x == li_emails[len(li_emails) - 1]:
+                        s.sendmail(sender_email, x, msg)
+                        flash("Your email has been sent !")
+                    else:
+                        s.sendmail(sender_email, x, msg)
+            except Exception:
+                flash("Error, Try again")
+            return render_template("send.html")
         else:
             return render_template("send.html")
     except Exception:
@@ -39,23 +49,19 @@ def send():
             emails = request.form["st"]
             li_emails = list(emails.split(","))
             msg = f"Subject: {sender_title}\n\n{sender_msg}"
-            return redirect(url_for("do"))
+            try:
+                s.login(sender_email, sender_password)
+                for x in li_emails:
+                    if x == li_emails[len(li_emails) - 1]:
+                        s.sendmail(sender_email, x, msg)
+                        flash("Your email has been sent !")
+                    else:
+                        s.sendmail(sender_email, x, msg)
+            except Exception:
+                flash("Error, Try again")
+            return render_template("send.html")
         else:
             return render_template("send.html")
-
-
-@app.route("/sending")
-def do():
-    try:
-        s.login(sender_email, sender_password)
-        for x in li_emails:
-            if x == li_emails[len(li_emails) - 1]:
-                s.sendmail(sender_email, x, msg)
-                return render_template("sending.html", mes="Done! Your request has been done!")
-            else:
-                s.sendmail(sender_email, x, msg)
-    except Exception:
-        return render_template("sending.html", mes="Error, Try again")
 
 
 ################   END OF EMAIL SENDER  ########################
@@ -70,9 +76,8 @@ def bmi():
         num2_get = request.form["num2"]
         num2 = float(num2_get) / 100
         bmi = float(num1) / (float(num2) ** 2)
-        return render_template("bmi.html", mes=f"Your BMI is {bmi}")
-    else:
-        return render_template("bmi.html")
+        flash(f"Your BMI is {bmi}")
+    return render_template("bmi.html")
 
 
 #########################   END BMI   ###########################
@@ -113,9 +118,23 @@ def rad_num():
 
 ####################   END RANDOM NUM   ##########################
 
+
+####################   MORE TOOLS   ##############################
+
+@app.route("/more")
+def more():
+    return render_template("more.html")
+
+####################   END MORE TOOLS   ##########################
+
+
+####################   Privacy Policy   ##########################
+
 @app.route("/p")
 def p():
     return render_template("p.html")
+
+###################  END Privacy Policy   ########################
 
 
 def listToString(s):

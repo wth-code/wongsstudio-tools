@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block nav %}
+<a class="nav-link" href="..">Home</a>
+<a class="nav-link" href="/send">Email Sender</a>
+<a class="nav-link" href="/bmi">BMI Calculator</a>
+<a class="nav-link active" aria-current="page" href="/covid">MORE TOOLS</a>
+{% endblock %}
+{% block content %}
+<table>
+    <tr>
+        <td>
+            <div class="card" style="width: 20rem;">
+              <div class="card-body" style="color: black;">
+                <h5 class="card-title">Covid-19 Data</h5>
+                  <br>
+                <a href="/covid" class="btn btn-primary">Try it !</a>
+              </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width: 20rem;">
+              <div class="card-body" style="color: black;">
+                <h5 class="card-title">Random Number Generator</h5>
+                  <br>
+                <a href="/rand_num" class="btn btn-primary">Try it !</a>
+              </div>
+            </div>
+        </td>
+</table>
+{% endblock %}
