@@ -7,20 +7,21 @@
 {% endblock %}
 {% block content %}
 <h1>Random Number Generator</h1>
-	<form action="#" method="POST">
-	<table>
-        <tr>
+<center>
+   <form action="#" method="POST">
+      <table>
+         <tr>
             <td>Min : </td>
             <td><input type="number" name="min" step="1"></td>
-        </tr>
-        <tr>
+         </tr>
+         <tr>
             <td>Max : </td>
             <td><input type="number" name="max"></td>
-        </tr>
-    </table>
-         <p class="lead">{{mes}}</p>
-        <br>
-    <input class="btn btn-primary" type="submit" value="Start" name="sendnow"><br>
-
-</form>
+         </tr>
+      </table>
+      <p class="lead">{{mes}}</p>
+      <br>
+      <input class="btn btn-primary" type="submit" value="Start" name="sendnow"><br>
+   </form>
+</center>
 {% endblock %}
