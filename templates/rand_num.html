@@ -13,11 +13,11 @@
       <table>
          <tr>
             <td>Min : </td>
-            <td><input type="number" name="min" step="1"></td>
+            <td><input type="number" name="min" step="1" required></td>
          </tr>
          <tr>
             <td>Max : </td>
-            <td><input type="number" name="max"></td>
+            <td><input type="number" name="max" required></td>
          </tr>
       </table>
       {% with messages = get_flashed_messages() %}
