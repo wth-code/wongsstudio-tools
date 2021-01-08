@@ -23,7 +23,7 @@
     {% if msg == "Type a YouTube Video URL !" %}
     <p class="lead">{{msg}}</p>
     {% else %}
-    <a href="{{msg}}" target="_blank"><p class="lead">{{msg}}</p></a>
+    <img src="{{msg}}" height="350"><p>right click the thumbnail, press 'Save image as...' to download</p>
     {% endif %}
     {% endfor %}
     {% endif %}
