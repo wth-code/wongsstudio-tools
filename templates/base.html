@@ -1,95 +1,87 @@
-<!doctype html>
-<html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.79.0">
-    <title>Wong's Studio Tools</title>
-    <link rel="icon" href="https://i.postimg.cc/cLnpvDGH/logo2-no-background-no-word.png">
-    <!-- Bootstrap core CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="" name="description">
+	<meta content="Mark Otto, Jacob Thornton, and Bootstrap contributors" name="author">
+	<meta content="Hugo 0.79.0" name="generator">
+	<title>Wong's Studio Tools</title>
+	<link href="https://i.postimg.cc/cLnpvDGH/logo2-no-background-no-word.png" rel="icon"><!-- Bootstrap core CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+	   body {
+	       text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+	       box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+	     }
 
-    <style>
-    body {
-        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-      }
-
-      .cover-container {
-        max-width: 42em;
-      }
+	     .cover-container {
+	       max-width: 42em;
+	     }
 
 
-      /*
-       * Header
-       */
+	     /*
+	      * Header
+	      */
 
-      .nav-masthead .nav-link {
-        padding: .25rem 0;
-        font-weight: 700;
-        color: rgba(255, 255, 255, .5);
-        background-color: transparent;
-        border-bottom: .25rem solid transparent;
-      }
+	     .nav-masthead .nav-link {
+	       padding: .25rem 0;
+	       font-weight: 700;
+	       color: rgba(255, 255, 255, .5);
+	       background-color: transparent;
+	       border-bottom: .25rem solid transparent;
+	     }
 
-      .nav-masthead .nav-link:hover,
-      .nav-masthead .nav-link:focus {
-        border-bottom-color: rgba(255, 255, 255, .25);
-      }
+	     .nav-masthead .nav-link:hover,
+	     .nav-masthead .nav-link:focus {
+	       border-bottom-color: rgba(255, 255, 255, .25);
+	     }
 
-      .nav-masthead .nav-link + .nav-link {
-        margin-left: 1rem;
-      }
+	     .nav-masthead .nav-link + .nav-link {
+	       margin-left: 1rem;
+	     }
 
-      .nav-masthead .active {
-        color: #fff;
-        border-bottom-color: #fff;
-      }
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+	     .nav-masthead .active {
+	       color: #fff;
+	       border-bottom-color: #fff;
+	     }
+	     .bd-placeholder-img {
+	       font-size: 1.125rem;
+	       text-anchor: middle;
+	       -webkit-user-select: none;
+	       -moz-user-select: none;
+	       user-select: none;
+	     }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-  </head>
-  <body class="d-flex h-100 text-center text-white bg-dark">
-
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="mb-auto">
-    <div>
-      <h3 class="float-md-start mb-0">Wong's Studio</h3>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-        {% block nav %}{% endblock %}
-      </nav>
-    </div>
-  </header>
-
-  <main class="px-3">
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer class="mt-auto text-white-50">
-      <a href="/p" target="_blank" class="link-secondary">Privacy Policy</a>
-  </footer>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-
-{% block script %}{% endblock %}
-<script></script>
-  </body>
+	     @media (min-width: 768px) {
+	       .bd-placeholder-img-lg {
+	         font-size: 3.5rem;
+	       }
+	     }
+	</style><!-- Custom styles for this template -->
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+			<div>
+				<h3 class="float-md-start mb-0">Wong's Studio</h3>
+				<nav class="nav nav-masthead justify-content-center float-md-end">
+					{% block nav %}{% endblock %}
+				</nav>
+			</div>
+		</header>
+		<main class="px-3">
+			{% block content %}{% endblock %}
+		</main>
+		<footer class="mt-auto text-white-50">
+			<a class="link-secondary" href="/p" target="_blank">Privacy Policy</a>
+		</footer>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js">
+	</script> {% block script %}{% endblock %}
+</body>
 </html>

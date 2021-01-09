@@ -1,32 +1,34 @@
-{% extends "base.html" %}
-{% block nav %}
-<a class="nav-link" href="..">Home</a>
-<a class="nav-link" href="/send">Email Sender</a>
-<a class="nav-link" href="/bmi">BMI Calculator</a>
-<a class="nav-link" href="/more">MORE TOOLS</a>
-{% endblock %}
-{% block content %}
-<form action="#" method="POST">
-    <h1>YouTube Thumbnail Downloader</h1>
-    <p>Type in a YouTube video URL to download</p>
-    <center>
-    <table>
-        <tr>
-            <td><input type="text" name="url" required></td>
-             <td><input class="btn btn-primary" type="submit" value="OK" name="sendnow"></td>
-        </tr>
-    </table>
-    </center>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for msg in messages %}
-    {% if msg == "Type a YouTube Video URL !" %}
-    <p class="lead">{{msg}}</p>
-    {% else %}
-    <img src="{{msg}}" height="350"><p>right click the thumbnail, press 'Save image as...' to download</p>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% extends "base.html" %} {% block nav %}
+    <a class="nav-link" href="..">Home</a> <a class="nav-link" href="/send">Email Sender</a>
+    <a class="nav-link" href="/bmi">BMI Calculator</a>
+    <a class="nav-link" href="/more">MORE TOOLS</a>
+    {% endblock %} {% block content %}
+	<form action="#" method="post">
+		<h1>YouTube Thumbnail Downloader</h1>
+		<p>Type in a YouTube video URL to download</p>
+		<center>
+			<table>
+				<tr>
+					<td><input name="url" required="" type="text"></td>
+					<td><input class="btn btn-primary" name="sendnow" type="submit" value="OK"></td>
+				</tr>
+			</table>
+		</center>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+        {% if msg == "Type a YouTube Video URL !" %}
+		<p class="lead">{{msg}}</p>{% else %} <img height="350" src="{{msg}}">
+		<p>right click the thumbnail, press 'Save image as...' to download</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+	</form>{% endblock %}
+</body>
+</html>
