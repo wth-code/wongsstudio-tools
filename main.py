@@ -3,11 +3,13 @@ import smtplib
 import requests
 from bs4 import BeautifulSoup
 import random
-import webbrowser
 from urllib.parse import urlparse, parse_qs
+import time
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
+last_time = "30"
+wait_time = 300
 
 
 @app.route("/")
@@ -90,13 +92,6 @@ def bmi():
 
 @app.route("/covid", methods=["GET", "POST"])
 def covid():
-    url = "https://www.worldometers.info/coronavirus/"
-    sess = requests.session()
-    req = sess.get(url)
-    soup = BeautifulSoup(req.text, features="html.parser")
-    case = soup.select(".maincounter-number")[0].text
-    death = soup.select(".maincounter-number")[1].text
-    recover = soup.select(".maincounter-number")[2].text
     return render_template("covid.html", case=case, recover=recover, death=death)
 
 
@@ -183,7 +178,25 @@ def extract_video_id(url):
     return False
 
 
+def get_data():
+    global case, death, recover
+    url = "https://www.worldometers.info/coronavirus/"
+    sess = requests.session()
+    req = sess.get(url)
+    soup = BeautifulSoup(req.text, features="html.parser")
+    case = soup.select(".maincounter-number")[0].text
+    death = soup.select(".maincounter-number")[1].text
+    recover = soup.select(".maincounter-number")[2].text
+
+
 s = smtplib.SMTP('smtp.gmail.com', 587)
+while True:
+    t = time.localtime()
+    current_time = time.strftime("%S", t)
+    if current_time == last_time:
+        last_time = str(int(current_time)+wait_time)
+        print("got data")
+        get_data()
 
 if __name__ == "__main__":
     app.debug = True
