@@ -8,8 +8,6 @@ import time
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
-last_time = "30"
-wait_time = 300
 
 
 @app.route("/")
