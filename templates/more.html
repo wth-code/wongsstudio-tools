@@ -1,42 +1,58 @@
-{% extends "base.html" %}
-{% block nav %}
-<a class="nav-link" href="..">Home</a>
-<a class="nav-link" href="/send">Email Sender</a>
-<a class="nav-link" href="/bmi">BMI Calculator</a>
-<a class="nav-link active" aria-current="page" href="#">MORE TOOLS</a>
-{% endblock %}
-{% block content %}
-<table>
-    <tr>
-        <td>
-            <div class="card" style="width: 15rem;">
-              <div class="card-body" style="color: black;">
-                <h5 class="card-title">Covid-19 <br>Data</h5>
-                  <br>
-                    <a href="/covid" class="btn btn-primary">Try It !</a>
-              </div>
-            </div>
-        </td>
-        <td>
-            <div class="card" style="width: 15rem;">
-              <div class="card-body" style="color: black;">
-                <h5 class="card-title">Random Number Generator</h5>
-                  <br>
-                <a href="/rand_num" class="btn btn-primary">Try It !</a>
-
-              </div>
-            </div>
-        </td>
-        <td>
-            <div class="card" style="width: 15rem;">
-              <div class="card-body" style="color: black;">
-                <h5 class="card-title">YouTube Thumbnail Downloader</h5>
-                  <br>
-                <a href="/ytthumb" class="btn btn-primary">Tryt !</a>
-              </div>
-            </div>
-        </td>
-</table>
-{% endblock %}
-{% block script %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% extends "base.html" %}
+	{% block nav %} 
+	<a class="nav-link" href="..">Home</a>
+	<a class="nav-link" href="/send">Email Sender</a>
+	<a class="nav-link" href="/bmi">BMI Calculator</a>
+	<a class="nav-link active" href="#">MORE TOOLS</a> 
+	{% endblock %} 
+	{% block content %}
+	<center>
+		<center></center>
+		<table>
+			<tr>
+				<td>
+					<center>
+						<div class="card" style="width: 13rem;">
+							<div class="card-body" style="color: black;">
+								<h5 class="card-title">Covid-19<br>
+								Data</h5><br>
+								<a class="btn btn-primary" href="/covid">Try It !</a>
+							</div>
+						</div>
+					</center>
+				</td>
+				<td>
+					<center>
+						<div class="card" style="width: 13rem;">
+							<div class="card-body" style="color: black;">
+								<h5 class="card-title">Random Number Generator</h5><br>
+								<a class="btn btn-primary" href="/rand_num">Try It !</a>
+							</div>
+						</div>
+					</center>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<center>
+						<div class="card" style="width: 13rem;">
+							<div class="card-body" style="color: black;">
+								<h5 class="card-title">YouTube Thumbnail Downloader</h5><br>
+								<a class="btn btn-primary" href="/ytthumb">Tryt !</a>
+							</div>
+						</div>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>{% endblock %} 
+	{% block script %} 
+	{% endblock %}
+</body>
+</html>
