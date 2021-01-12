@@ -15,7 +15,7 @@ def home():
     return render_template("index.html")
 
 
-################   EMAIL SENDER  ########################
+# =================   EMAIL SENDER  ====================
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
@@ -57,7 +57,8 @@ def send():
                 for x in li_emails:
                     if x == li_emails[len(li_emails) - 1]:
                         s.sendmail(sender_email, x, msg)
-                        flash("Your email has been sent !")
+                        show = listToString(li_emails)
+                        flash(f"Your email has been sent to {show}")
                     else:
                         s.sendmail(sender_email, x, msg)
             except Exception:
@@ -66,11 +67,10 @@ def send():
         else:
             return render_template("send.html")
 
+# ===============   END OF EMAIL SENDER  ===================
 
-################   END OF EMAIL SENDER  ########################
 
-
-###########################   BMI   ############################
+# =======================   BMI  ===========================
 
 @app.route("/bmi", methods=["GET", "POST"])
 def bmi():
@@ -82,11 +82,10 @@ def bmi():
         flash(f"Your BMI is {bmi}")
     return render_template("bmi.html")
 
+# ====================   END BMI   ============================
 
-#########################   END BMI   ###########################
 
-
-#########################    COVID    ###########################
+# ===================    COVID    ==============================
 
 @app.route("/covid", methods=["GET", "POST"])
 def covid():
@@ -99,11 +98,10 @@ def covid():
     recover = soup.select(".maincounter-number")[2].text
     return render_template("covid.html", case=case, recover=recover, death=death)
 
+# ======================   END COVID   ===========================
 
-########################   END COVID   ###########################
 
-
-######################   RANDOM NUM   ############################
+# ======================   RANDOM NUM   ==========================
 
 @app.route("/rand_num", methods=["GET", "POST"])
 def rad_num():
@@ -119,11 +117,10 @@ def rad_num():
     else:
         return render_template("rand_num.html")
 
+# ===================    END RANDOM NUM   =======================
 
-####################   END RANDOM NUM   ##########################
 
-
-####################   MORE TOOLS   ##############################
+# =======================   YT Thumb   =========================
 
 @app.route("/ytthumb", methods=["GET", "POST"])
 def ytthumb():
@@ -140,28 +137,25 @@ def ytthumb():
     else:
         return render_template("yt_thumb.html")
 
+# ====================   END YT Thumb  =========================
 
-####################   END MORE TOOLS   ##########################
 
-
-####################   MORE TOOLS   ##############################
+# ====================     MORE TOOLS   ==========================
 
 @app.route("/more")
 def more():
     return render_template("more.html")
 
+# ====================   END MORE TOOLS   ====================
 
-####################   END MORE TOOLS   ##########################
 
-
-####################   Privacy Policy   ##########################
+# ====================  Privacy Policy   ====================
 
 @app.route("/p")
 def p():
     return render_template("p.html")
 
-
-###################  END Privacy Policy   ########################
+# ====================  END Privacy Policy   ====================
 
 
 def listToString(s):
@@ -169,7 +163,7 @@ def listToString(s):
     str1 = " "
 
     # return string
-    return (str1.join(s))
+    return str1.join(s)
 
 
 def extract_video_id(url):
@@ -179,7 +173,7 @@ def extract_video_id(url):
         if query.path == '/watch': return parse_qs(query.query)['v'][0]
         if query.path[:7] == '/embed/': return query.path.split('/')[2]
         if query.path[:3] == '/v/': return query.path.split('/')[2]
-    # fail?
+    # fail
     return False
 
 
