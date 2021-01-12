@@ -35,9 +35,7 @@
     <br>
       {% with messages = get_flashed_messages() %}
       {% if messages %}
-      {% for msg in messages %}
       <p class="lead">{{msg}}</p>
-      {% endfor %}
       {% endif %}
       {% endwith %}
     <br>
