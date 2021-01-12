@@ -57,8 +57,7 @@ def send():
                 for x in li_emails:
                     if x == li_emails[len(li_emails) - 1]:
                         s.sendmail(sender_email, x, msg)
-                        show = listToString(li_emails)
-                        flash(f"Your email has been sent to {show}")
+                        flash(f"Your email has been sent !")
                     else:
                         s.sendmail(sender_email, x, msg)
             except Exception:
