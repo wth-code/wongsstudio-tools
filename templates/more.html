@@ -22,7 +22,9 @@
 							<div class="card-body" style="color: black;">
 								<h5 class="card-title">Covid-19<br>
 								Data</h5><br>
-								<a class="btn btn-primary" href="/covid">Try It !</a>
+								<button type="button" data-loading-text="Loading..." class="btn btn-primary">
+								  Try it !
+								</button>
 							</div>
 						</div>
 					</center>
@@ -52,7 +54,9 @@
 			</tr>
 		</table>
 	</center>{% endblock %} 
-	{% block script %} 
+	{% block script %}
+	<script src="{{ url_for('static', filename='my.js') }}">
+	</script>
 	{% endblock %}
 </body>
 </html>

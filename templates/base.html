@@ -80,11 +80,9 @@
             </center>
 		</footer>
 	</div>
-	<script src="{{ url_for('static', filename='bundle.min.js') }}">
-	</script>
-	<script src="{{ url_for('static', filename='popper.min.js') }}">
-	</script>
-	<script src="{{ url_for('static', filename='min.js') }}">
-	</script> {% block script %}{% endblock %}
+	<script src="{{ url_for('static', filename='bundle.min.js') }}" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='popper.min.js') }}" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='min.js') }}" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+	{% block script %}{% endblock %}
 </body>
 </html>
