@@ -23,8 +23,12 @@
 								<h5 class="card-title">Covid-19<br>
 								Data</h5><br>
 								<a href="/covid">
-								<button type="button" class="btn btn-primary" onclick="load()" id="bt">Try it !</button>
-								</a>
+								    <button type="button" class="btn btn-primary" id="bt" onclick="load()">Try it !</button>
+									</a>
+									<button class="btn btn-primary" type="button" disabled id="load">
+										<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+										<span>Loading...</span>
+									</button>
 							</div>
 						</div>
 					</center>
@@ -56,8 +60,11 @@
 	</center>{% endblock %} 
 	{% block script %}
 	<script>
-		function load(){
-            document.getElementById('bt').textContent="Loading..."
+		document.getElementById('load').style.display="none"
+        function load(){
+            /*document.getElementById('bt').textContent="Loading..."*/
+            document.getElementById('bt').style.display="none"
+            document.getElementById('load').style.display="inline"
         }
 	</script>
 	{% endblock %}
