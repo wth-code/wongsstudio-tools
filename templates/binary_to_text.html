@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block nav %}
+    <a class="nav-link" href="..">Home</a> <a class="nav-link" href="/send">Email Sender</a>
+    <a class="nav-link" href="/bmi">BMI Calculator</a>
+    <a class="nav-link" href="/more">MORE TOOLS</a>
+{% endblock %}
+{% block content %}
+    <h1>Text to Binary code Converter</h1>
+    <form action="#" method="POST">
+        <p class="lead">Your Text:</p>
+        <textarea type="text" name="uin" rows="7" cols="50" required></textarea>
+        <br>
+        {% for message in get_flashed_messages() %}
+        <p class="lead">Binary Code:</p>
+            <textarea type="text" name="uin" rows="7" cols="50">{{ message }}</textarea><br>
+        {% endfor %}
+        <br>
+        <input class="btn btn-primary" type="submit" value="Send" name="sendnow">
+    </form>
+{% endblock %}

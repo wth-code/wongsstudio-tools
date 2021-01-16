@@ -139,6 +139,20 @@ def ytthumb():
 # ====================   END YT Thumb  =========================
 
 
+# ==================     BINARY TO TEXT   =======================
+@app.route("/binary_to_text", methods=["GET", "POST"])
+def binary_to_text():
+    if request.method == "POST":
+        user_input = request.form["uin"]
+        done = string_to_binary(user_input)
+        flash(done)
+        return render_template("binary_to_text.html")
+    else:
+        flash(" ")
+        return render_template("binary_to_text.html")
+# ====================   END BINARY TO TEXT   ====================
+
+
 # ====================     MORE TOOLS   ==========================
 
 @app.route("/more")
@@ -174,6 +188,32 @@ def extract_video_id(url):
         if query.path[:3] == '/v/': return query.path.split('/')[2]
     # fail
     return False
+
+
+def string_to_binary(string):
+    total_binary = ''
+
+    # Main for loop
+    for x in range(0, len(string)):
+        binary = ''
+        string_ord = ord(string[x: x + 1])
+
+        # Converts an ASCII number for a character to a binary value
+        while string_ord > 0:
+            i = string_ord % 2
+            string_ord = string_ord // 2
+            binary = str(i) + str(binary)
+
+        # Converts it to 8 bits
+        if len(binary) < 8:
+            required_bits = 8 - len(binary)
+            for i in range(required_bits):
+                binary = '0' + binary
+
+        # Adds binary to total binary
+        total_binary += binary + ' '
+
+    return str(total_binary)
 
 
 s = smtplib.SMTP('smtp.gmail.com', 587)
