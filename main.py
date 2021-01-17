@@ -160,35 +160,35 @@ bin_done = ""
 
 @app.route("/text_to_binary", methods=["GET", "POST"])
 def binary_to_text():
-    global bin_done
+    global bin_done, txt_input
     if request.method == "POST":
-        user_input = request.form["uin"]
-        bin_done = string_to_binary(user_input)
+        txt_input = request.form["uin"]
+        bin_done = string_to_binary(txt_input)
         flash(bin_done)
-        return render_template("text_to_binary.html")
+        return render_template("text_to_binary.html", txt_done=txt_input)
     else:
         if txt_done == "" or txt_done == "Error":
             flash(" ")
             return render_template("text_to_binary.html")
         else:
-            flash(" ")
+            flash(bin_input)
             return render_template("text_to_binary.html", txt_done=txt_done)
 
 
 @app.route("/binary_to_text", methods=["GET", "POST"])
 def text_to_binary():
-    global txt_done
+    global txt_done, bin_input
     if request.method == "POST":
-        user_input = request.form["uin"]
-        txt_done = binary_to_string(user_input)
+        bin_input = request.form["uin"]
+        txt_done = binary_to_string(bin_input)
         flash(txt_done)
-        return render_template("binary_to_text.html")
+        return render_template("binary_to_text.html", bin_done=bin_input)
     else:
         if bin_done == "":
             flash(" ")
             return render_template("binary_to_text.html")
         else:
-            flash(" ")
+            flash(txt_input)
             return render_template("binary_to_text.html", bin_done=bin_done)
 
 
@@ -243,7 +243,6 @@ def p():
 
 
 # ====================  END Privacy Policy   ====================
-
 
 def listToString(s):
     # initialize an empty string
