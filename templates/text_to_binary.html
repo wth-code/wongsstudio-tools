@@ -5,19 +5,18 @@
     <a class="nav-link" href="/more">MORE TOOLS</a>
 {% endblock %}
 {% block content %}
-    <h1>Binary to Text code Converter</h1>
+    <h1>Text to Binary code Converter</h1>
     <form action="#" method="POST">
-        <p class="lead">Binary Code:</p>
-        <textarea type="text" name="uin" rows="7" cols="60" required>{{bin_done}}</textarea><br>
+        <p class="lead">Your Text:</p>
+        <textarea type="text" name="uin" rows="7" cols="60" required>{{txt_done}}</textarea><br>
         <input class="btn btn-primary" type="submit" value="Convert" name="sendnow">
     </form>
     <br>
-    <a href="/text_to_binary"><button class="btn btn-outline-info">↑ switch ↓</button></a><br><br>
+    <a href="/binary_to_text"><button class="btn btn-outline-info">↑ switch ↓</button></a><br><br>
     {% for message in get_flashed_messages() %}
-    <p class="lead">Your Text:</p>
+    <p class="lead">Binary Code:</p>
        <textarea type="text" name="uin" rows="7" cols="60">{{ message }}</textarea><br>
     {% endfor %}
     <br>
-
 
 {% endblock %}

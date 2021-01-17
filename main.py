@@ -66,6 +66,7 @@ def send():
         else:
             return render_template("send.html")
 
+
 # ===============   END OF EMAIL SENDER  ===================
 
 
@@ -80,6 +81,7 @@ def bmi():
         bmi = float(num1) / (float(num2) ** 2)
         flash(f"Your BMI is {bmi}")
     return render_template("bmi.html")
+
 
 # ====================   END BMI   ============================
 
@@ -96,6 +98,7 @@ def covid():
     death = soup.select(".maincounter-number")[1].text
     recover = soup.select(".maincounter-number")[2].text
     return render_template("covid.html", case=case, recover=recover, death=death)
+
 
 # ======================   END COVID   ===========================
 
@@ -115,6 +118,7 @@ def rad_num():
         return render_template("rand_num.html")
     else:
         return render_template("rand_num.html")
+
 
 # ===================    END RANDOM NUM   =======================
 
@@ -136,21 +140,89 @@ def ytthumb():
     else:
         return render_template("yt_thumb.html")
 
+def extract_video_id(url):
+    query = urlparse(url)
+    if query.hostname == 'youtu.be': return query.path[1:]
+    if query.hostname in {'www.youtube.com', 'youtube.com'}:
+        if query.path == '/watch': return parse_qs(query.query)['v'][0]
+        if query.path[:7] == '/embed/': return query.path.split('/')[2]
+        if query.path[:3] == '/v/': return query.path.split('/')[2]
+    # fail
+    return False
+
 # ====================   END YT Thumb  =========================
 
 
-# ==================     BINARY TO TEXT   =======================
-@app.route("/binary_to_text", methods=["GET", "POST"])
+# ==================     BINARY TRANSLATE   =======================
+txt_done = ""
+bin_done = ""
+
+
+@app.route("/text_to_binary", methods=["GET", "POST"])
 def binary_to_text():
+    global bin_done
     if request.method == "POST":
         user_input = request.form["uin"]
-        done = string_to_binary(user_input)
-        flash(done)
+        bin_done = string_to_binary(user_input)
+        flash(bin_done)
+        return render_template("text_to_binary.html")
+    else:
+        if txt_done == "" or txt_done == "Error":
+            flash(" ")
+            return render_template("text_to_binary.html")
+        else:
+            flash(" ")
+            return render_template("text_to_binary.html", txt_done=txt_done)
+
+
+@app.route("/binary_to_text", methods=["GET", "POST"])
+def text_to_binary():
+    global txt_done
+    if request.method == "POST":
+        user_input = request.form["uin"]
+        txt_done = binary_to_string(user_input)
+        flash(txt_done)
         return render_template("binary_to_text.html")
     else:
-        flash(" ")
-        return render_template("binary_to_text.html")
-# ====================   END BINARY TO TEXT   ====================
+        if bin_done == "":
+            flash(" ")
+            return render_template("binary_to_text.html")
+        else:
+            flash(" ")
+            return render_template("binary_to_text.html", bin_done=bin_done)
+
+
+def string_to_binary(string):
+    total_binary = ''
+    for x in range(0, len(string)):
+        binary = ''
+        string_ord = ord(string[x: x + 1])
+        while string_ord > 0:
+            i = string_ord % 2
+            string_ord = string_ord // 2
+            binary = str(i) + str(binary)
+        if len(binary) < 8:
+            required_bits = 8 - len(binary)
+            for i in range(required_bits):
+                binary = '0' + binary
+        total_binary += binary + ' '
+    return str(total_binary)
+
+
+def binary_to_string(binary):
+    try:
+        binary_values = binary.split()
+        ascii_string = ""
+        for binary_value in binary_values:
+            an_integer = int(binary_value, 2)
+            ascii_character = chr(an_integer)
+            ascii_string += ascii_character
+        return ascii_string
+    except Exception:
+        return "Error"
+
+
+# ====================   END BINARY TRANSLATE   ====================
 
 
 # ====================     MORE TOOLS   ==========================
@@ -158,6 +230,7 @@ def binary_to_text():
 @app.route("/more")
 def more():
     return render_template("more.html")
+
 
 # ====================   END MORE TOOLS   ====================
 
@@ -167,6 +240,7 @@ def more():
 @app.route("/p")
 def p():
     return render_template("p.html")
+
 
 # ====================  END Privacy Policy   ====================
 
@@ -179,46 +253,8 @@ def listToString(s):
     return str1.join(s)
 
 
-def extract_video_id(url):
-    query = urlparse(url)
-    if query.hostname == 'youtu.be': return query.path[1:]
-    if query.hostname in {'www.youtube.com', 'youtube.com'}:
-        if query.path == '/watch': return parse_qs(query.query)['v'][0]
-        if query.path[:7] == '/embed/': return query.path.split('/')[2]
-        if query.path[:3] == '/v/': return query.path.split('/')[2]
-    # fail
-    return False
-
-
-def string_to_binary(string):
-    total_binary = ''
-
-    # Main for loop
-    for x in range(0, len(string)):
-        binary = ''
-        string_ord = ord(string[x: x + 1])
-
-        # Converts an ASCII number for a character to a binary value
-        while string_ord > 0:
-            i = string_ord % 2
-            string_ord = string_ord // 2
-            binary = str(i) + str(binary)
-
-        # Converts it to 8 bits
-        if len(binary) < 8:
-            required_bits = 8 - len(binary)
-            for i in range(required_bits):
-                binary = '0' + binary
-
-        # Adds binary to total binary
-        total_binary += binary + ' '
-
-    return str(total_binary)
-
-
 s = smtplib.SMTP('smtp.gmail.com', 587)
-
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
