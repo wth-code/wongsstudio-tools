@@ -4,11 +4,17 @@ import requests
 from bs4 import BeautifulSoup
 import random
 from urllib.parse import urlparse, parse_qs
+from flask_table import Table, Col
+from firebase import firebase
 import time
+from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
-
+country_time_zone = pytz.timezone('Asia/Hong_Kong')
+country_time = datetime.now(country_time_zone)
+firebase = firebase.FirebaseApplication("https://stock-3fba6-default-rtdb.firebaseio.com/", None)
 
 @app.route("/")
 def home():
@@ -230,6 +236,30 @@ def p():
 
 
 # ====================  END Privacy Policy   ====================
+
+# =========================== STOCK ==============================
+
+@app.route("/stock")
+def stock():
+    return get_items(get_date_now())
+
+# =========================== STOCK ==============================
+
+class ItemTable(Table):
+    name = Col('Time')
+    description = Col('Price')
+
+def get_date_now():
+    country_time = datetime.now(country_time_zone)
+    return country_time.strftime("%d-%m-%y")
+
+def get_items(date):
+    result = firebase.get(date, "")
+    items = []
+    for time, price in result.items():
+        items.append(dict(name=time, description=price))
+    table = ItemTable(items, border="1")
+    return table.__html__()
 
 def listToString(s):
     # initialize an empty string
