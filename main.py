@@ -241,9 +241,13 @@ def p():
 
 @app.route("/stock")
 def stock():
-    return get_items(get_date_now())
+    return get_items(get_date_now()) + "other dates please go to link https://wth-code-emailsender-web.zeet.app/stock/(date) date format is dd-mm-yy"
 
-# =========================== STOCK ==============================
+@app.route("/stock/<date>")
+def stock_date(date):
+    return get_items(date)
+
+# ========================= END STOCK =============================
 
 class ItemTable(Table):
     name = Col('Time')
