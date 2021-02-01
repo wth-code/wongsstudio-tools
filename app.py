@@ -16,6 +16,7 @@ country_time_zone = pytz.timezone('Asia/Hong_Kong')
 country_time = datetime.now(country_time_zone)
 firebase = firebase.FirebaseApplication("https://stock-3fba6-default-rtdb.firebaseio.com/", None)
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -146,6 +147,7 @@ def ytthumb():
     else:
         return render_template("yt_thumb.html")
 
+
 def extract_video_id(url):
     query = urlparse(url)
     if query.hostname == 'youtu.be': return query.path[1:]
@@ -155,6 +157,7 @@ def extract_video_id(url):
         if query.path[:3] == '/v/': return query.path.split('/')[2]
     # fail
     return False
+
 
 # ====================   END YT Thumb  =========================
 
@@ -243,13 +246,15 @@ def p():
 def stock():
     return get_items(get_date_now())
 
+
 @app.route("/stock/<date>")
 def stock_date(date):
     try:
         table = get_items(date)
         return table
-    except:
+    except (AttributeError):
         return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
+
 
 def get_items(date):
     result = firebase.get(date, "")
@@ -258,6 +263,7 @@ def get_items(date):
         items.append(dict(name=time, description=price))
     table = ItemTable(items, border="1")
     return table.__html__()
+
 
 class ItemTable(Table):
     name = Col('Time')
@@ -270,6 +276,7 @@ class ItemTable(Table):
 def get_date_now():
     country_time = datetime.now(country_time_zone)
     return country_time.strftime("%d-%m-%y")
+
 
 def listToString(s):
     # initialize an empty string
