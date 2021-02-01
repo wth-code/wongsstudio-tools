@@ -245,7 +245,11 @@ def stock():
 
 @app.route("/stock/<date>")
 def stock_date(date):
-    return get_items(date)
+    try:
+        table = get_items(date)
+        return table
+    except:
+        return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
 
 def get_items(date):
     result = firebase.get(date, "")
