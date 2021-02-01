@@ -255,7 +255,7 @@ def stock_date(date):
 def get_items(date):
     result = firebase.get(date, "")
     items = []
-    if len(result.items()) == 0:
+    if len(result) == 0:
         return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
     else:
         for time, price in result.items():
