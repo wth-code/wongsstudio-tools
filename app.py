@@ -251,6 +251,10 @@ def stock():
 def stock_date(date):
     return get_items(date)
 
+@app.route("/stock_dates")
+def stock_dates():
+    dates = list(firebase.get("/", "").keys())
+    return render_template("stock_dates.html", dates=dates, len = len(dates))
 
 def get_items(date):
     result = firebase.get(date, "")
@@ -289,4 +293,4 @@ s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
