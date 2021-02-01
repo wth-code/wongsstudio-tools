@@ -253,15 +253,15 @@ def stock_date(date):
 
 
 def get_items(date):
-    try:
-        result = firebase.get(date, "")
-        items = []
+    result = firebase.get(date, "")
+    items = []
+    if len(result.items()) == 0:
+        return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
+    else:
         for time, price in result.items():
             items.append(dict(name=time, description=price))
-        table = ItemTable(items, border="1")
+        table = ItemTable(items)
         return table.__html__()
-    except AttributeError:
-        return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
 
 
 
