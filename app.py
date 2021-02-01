@@ -249,20 +249,20 @@ def stock():
 
 @app.route("/stock/<date>")
 def stock_date(date):
-    try:
-        table = get_items(date)
-    except (AttributeError):
-        table = 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
-    return table
+    return get_items(date)
 
 
 def get_items(date):
-    result = firebase.get(date, "")
-    items = []
-    for time, price in result.items():
-        items.append(dict(name=time, description=price))
-    table = ItemTable(items, border="1")
-    return table.__html__()
+    try:
+        result = firebase.get(date, "")
+        items = []
+        for time, price in result.items():
+            items.append(dict(name=time, description=price))
+        table = ItemTable(items, border="1")
+        return table.__html__()
+    except AttributeError:
+        return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
+
 
 
 class ItemTable(Table):
