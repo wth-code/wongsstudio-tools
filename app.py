@@ -251,9 +251,9 @@ def stock():
 def stock_date(date):
     try:
         table = get_items(date)
-        return table
     except (AttributeError):
-        return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
+        table = 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
+    return table
 
 
 def get_items(date):
