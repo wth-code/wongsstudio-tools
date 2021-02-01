@@ -255,14 +255,13 @@ def stock_date(date):
 def get_items(date):
     result = firebase.get(date, "")
     items = []
-    if len(result) == 0:
+    if result == "None":
         return 'Error, try again  <a href="http://tools.wongsstudio.tk/stock/">Back</a>'
     else:
         for time, price in result.items():
             items.append(dict(name=time, description=price))
         table = ItemTable(items)
         return table.__html__()
-
 
 
 class ItemTable(Table):
