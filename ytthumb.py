@@ -2,7 +2,7 @@ from flask import request, render_template, flash
 from urllib.parse import urlparse, parse_qs
 
 
-def get():
+def get_thumb():
     if request.method == "POST":
         url = request.form["url"]
         if extract_video_id(url):

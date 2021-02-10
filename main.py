@@ -5,14 +5,16 @@ from flask_table import Table, Col
 from firebase import firebase
 from datetime import datetime
 import pytz
-import ytthumb
+import multiprocessing
 
 # my file
 import emailSend
 import bmi_calculator
-import covid
+import covid_virus
 import randnum
 import btt
+import ytthumb
+from weather import get_weather
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -50,7 +52,7 @@ def bmi():
 
 @app.route("/covid", methods=["GET", "POST"])
 def covid():
-    return covid.grab()
+    return covid_virus.grab_info()
 
 
 # ======================   END COVID   ===========================
@@ -69,8 +71,9 @@ def rad_num():
 # =======================   YT Thumb   =========================
 
 @app.route("/ytthumb", methods=["GET", "POST"])
-def ytthumb():
-    return ytthumb.get()
+def yt():
+    return ytthumb.get_thumb()
+
 
 # ====================   END YT Thumb  =========================
 
@@ -113,11 +116,14 @@ def p():
 
 @app.route("/stock")
 def stock():
-    return get_items(get_date_now()) + "other dates please go to link https://wth-code-emailsender-web.zeet.app/stock/(date) date format is dd-mm-yy"
+    return get_items(
+        get_date_now()) + "other dates please go to link https://wth-code-emailsender-web.zeet.app/stock/(date) date format is dd-mm-yy"
+
 
 @app.route("/stock/<date>")
 def stock_date(date):
     return get_items(date)
+
 
 # ========================= END STOCK =============================
 
@@ -125,9 +131,11 @@ class ItemTable(Table):
     name = Col('Time')
     description = Col('Price')
 
+
 def get_date_now():
     country_time = datetime.now(country_time_zone)
     return country_time.strftime("%d-%m-%y")
+
 
 def get_items(date):
     result = firebase.get(date, "")
@@ -136,6 +144,7 @@ def get_items(date):
         items.append(dict(name=time, description=price))
     table = ItemTable(items, border="1")
     return table.__html__()
+
 
 def listToString(s):
     # initialize an empty string
@@ -147,6 +156,8 @@ def listToString(s):
 
 s = smtplib.SMTP('smtp.gmail.com', 587)
 
+
 if __name__ == "__main__":
+    multiprocessing.Process(target=get_weather.doit).start()
     app.debug = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000)
