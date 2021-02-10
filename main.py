@@ -15,6 +15,7 @@ import randnum
 import btt
 import ytthumb
 from weather import get_weather
+from stock import get_stock
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -159,5 +160,6 @@ s = smtplib.SMTP('smtp.gmail.com', 587)
 
 if __name__ == "__main__":
     multiprocessing.Process(target=get_weather.doit).start()
+    multiprocessing.Process(target=get_stock.get_now).start()
     app.debug = True
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000)
