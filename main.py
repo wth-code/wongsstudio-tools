@@ -8,7 +8,7 @@ import covid_virus
 import randnum
 import btt
 import ytthumb
-import stock
+import stock_ui
 from weather import get_weather
 from stock import get_stock
 
@@ -68,12 +68,12 @@ def p():
 
 @app.route("/stock")  # STOCK TODAY
 def stock_web():
-    return stock.get()
+    return stock_ui.get()
 
 
 @app.route("/stock/<date>")  # STOCK WITH DATE
 def stock_date(date):
-    return stock.get_items(date)
+    return stock_ui.get_items(date)
 
 
 if __name__ == "__main__":
