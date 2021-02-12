@@ -17,5 +17,5 @@ def get_data():
 
 
 def grab_info():
-    threading.Thread(target=get_data).start()
+    get_data()
     return render_template("covid.html", case=case, recover=recover, death=death)
