@@ -136,4 +136,4 @@ def doit():
         firebase.put("/weather", "day5_icon", day5_icon)
         firebase.put("/time", "last_update", last_update)
         print("weather updated")
-        time.sleep(300)
+        time.sleep(500)
