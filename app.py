@@ -77,7 +77,7 @@ def stock_date(date):
 
 
 if __name__ == "__main__":
-    multiprocessing.Process(target=get_weather.doit).start()
-    multiprocessing.Process(target=get_stock.get_now).start()
+    # multiprocessing.Process(target=get_weather.doit).start()
+    # multiprocessing.Process(target=get_stock.get_now).start()
     app.debug = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run()
