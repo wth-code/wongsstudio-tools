@@ -75,7 +75,6 @@ def stock_web():
 def stock_date(date):
     return stock_ui.get_items(date)
 
-
 if __name__ == "__main__":
     # multiprocessing.Process(target=get_weather.doit).start()
     # multiprocessing.Process(target=get_stock.get_now).start()
